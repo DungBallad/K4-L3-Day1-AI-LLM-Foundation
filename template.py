@@ -69,6 +69,8 @@ def call_openai(
         # (perf_counter là đồng hồ đo khoảng thời gian, độ phân giải cao trên
         #  mọi hệ điều hành; time.time() trên Windows có thể trả về 0.0)
     """
+
+    # hehe
     # TODO: import OpenAI, tạo client, gọi chat.completions.create,
     #       đo start/end time, trả về (response_text, latency)
     raise NotImplementedError("Implement call_openai")
