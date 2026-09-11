@@ -508,8 +508,12 @@ def batch_compare(prompts: list[str]) -> list[dict]:
         List các dict — mỗi dict là kết quả compare_models kèm thêm
         key "prompt" chứa prompt gốc.
     """
-    # TODO (bonus): lặp qua prompts, gọi compare_models, thêm key "prompt"
-    raise NotImplementedError("Implement batch_compare")
+    results = []
+    for prompt in prompts:
+        res = compare_models(prompt)
+        res["prompt"] = prompt
+        results.append(res)
+    return results
 
 
 def format_comparison_table(results: list[dict]) -> str:
@@ -519,8 +523,33 @@ def format_comparison_table(results: list[dict]) -> str:
     Cột: Prompt | GPT-4o Response | Mini Response | GPT-4o Latency | Mini Latency
     Gợi ý: cắt text dài còn 40 ký tự cho dễ nhìn.
     """
-    # TODO (bonus): dựng chuỗi bảng và trả về
-    raise NotImplementedError("Implement format_comparison_table")
+    def truncate(text: str, max_len: int = 40) -> str:
+        clean_text = " ".join(text.split())
+        return clean_text[: max_len - 3] + "..." if len(clean_text) > max_len else clean_text
+
+    headers = ["Prompt", "GPT-4o Response", "Mini Response", "GPT-4o Latency", "Mini Latency"]
+    rows = []
+    for r in results:
+        prompt_txt = truncate(str(r.get("prompt", "")), 40)
+        gpt4o_txt = truncate(str(r.get("gpt4o_response", "")), 40)
+        mini_txt = truncate(str(r.get("mini_response", "")), 40)
+        gpt4o_lat = f"{r.get('gpt4o_latency', 0.0):.2f}s"
+        mini_lat = f"{r.get('mini_latency', 0.0):.2f}s"
+        rows.append([prompt_txt, gpt4o_txt, mini_txt, gpt4o_lat, mini_lat])
+
+    col_widths = [len(h) for h in headers]
+    for row in rows:
+        for i, val in enumerate(row):
+            col_widths[i] = max(col_widths[i], len(val))
+
+    header_line = " | ".join(headers[i].ljust(col_widths[i]) for i in range(len(headers)))
+    sep_line = "-+-".join("-" * col_widths[i] for i in range(len(headers)))
+    row_lines = [
+        " | ".join(row[i].ljust(col_widths[i]) for i in range(len(headers)))
+        for row in rows
+    ]
+
+    return "\n".join([header_line, sep_line] + row_lines)
 
 
 # ---------------------------------------------------------------------------
