@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LLM Foundation - Chatbot Studio (3 Layouts)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+
+    <!-- ============================================================ -->
+    <!-- LAYOUT 1 (TRÁI): CONVERSATIONS CŨ                           -->
+    <!-- ============================================================ -->
+    <aside class="panel panel-left" id="panel-conversations">
+      <div class="panel-header">
+        <div class="brand">
+          <div class="brand-icon">🤖</div>
+          <div class="brand-text">
+            <h2>LLM Chat Studio</h2>
+            <span class="badge-disk">💾 Lưu trên ổ cứng</span>
+          </div>
+        </div>
+        <button id="btn-new-chat" class="btn btn-primary btn-block">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+          Cuộc trò chuyện mới
+        </button>
+      </div>
+
+      <div class="search-box">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="text" id="search-sessions" placeholder="Tìm kiếm phiên chat...">
+      </div>
+
+      <div class="sessions-list" id="sessions-list">
+        <!-- Danh sách sessions sẽ được render bằng JS -->
+      </div>
+
+      <div class="panel-footer">
+        <div class="disk-indicator">
+          <span class="status-dot"></span>
+          <span id="disk-path-label">File: data/sessions.json</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ============================================================ -->
+    <!-- LAYOUT 2 (GIỮA): MAIN CHAT                                  -->
+    <!-- ============================================================ -->
+    <main class="panel panel-center" id="panel-chat">
+      <header class="chat-header">
+        <div class="chat-title-group">
+          <h1 id="current-session-title" contenteditable="true" title="Bấm để đổi tên phiên">Cuộc trò chuyện mới</h1>
+          <span class="edit-hint">✏️</span>
+        </div>
+
+        <div class="header-controls">
+          <div class="control-item">
+            <label for="model-select">Model:</label>
+            <select id="model-select" class="select-dropdown">
+              <option value="gpt-4o-mini">GPT-4o Mini (Nhanh & Rẻ)</option>
+              <option value="gpt-4o">GPT-4o (Thông minh)</option>
+            </select>
+          </div>
+          <div class="stats-summary" id="stats-summary">
+            <span title="Tổng lượt hỏi đáp">💬 <b id="stat-turns">0</b> lượt</span>
+            <span title="Tổng token input & output">🔤 <b id="stat-tokens">0</b> toks</span>
+            <span title="Tổng chi phí tích lũy">💰 <b id="stat-cost">$0.0000</b></span>
+          </div>
+        </div>
+      </header>
+
+      <!-- THANH HIỂN THỊ MODEL ĐANG ĐƯỢC SỬ DỤNG -->
+      <div class="active-model-bar" id="active-model-bar">
+        <div class="active-model-left">
+          <span class="pulse-indicator"></span>
+          <span class="active-model-label">Model đang dùng:</span>
+          <span class="active-model-badge" id="active-model-name">GPT-4o Mini</span>
+          <span class="active-model-tag" id="active-model-tag">⚡ Siêu tốc & Tiết kiệm</span>
+        </div>
+        <div class="active-model-right">
+          <span class="param-summary-pill" id="bar-param-summary" title="Thông số hiện tại: Temperature, Top P, Max Tokens">⚙️ T: 0.70 • P: 0.90 • Max: 512</span>
+          <div class="active-model-pricing" id="active-model-pricing">
+            <span class="price-pill" id="price-input">📥 In: $0.00015 / 1K tok</span>
+            <span class="price-pill" id="price-output">📤 Out: $0.00060 / 1K tok</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Khung hiển thị các tin nhắn -->
+      <section class="messages-container" id="messages-container">
+        <!-- Tin nhắn render động ở đây -->
+      </section>
+
+      <!-- Khung nhập tin nhắn -->
+      <footer class="chat-input-area">
+        <div class="input-wrapper">
+          <textarea 
+            id="chat-input" 
+            placeholder="Nhập câu hỏi của bạn... (Enter để gửi, Shift+Enter xuống dòng)" 
+            rows="1"
+          ></textarea>
+          <button id="btn-send" class="btn btn-send" title="Gửi tin nhắn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+          </button>
+          <button id="btn-stop" class="btn btn-stop hidden" title="Dừng phản hồi">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>
+          </button>
+        </div>
+        <div class="input-tips">
+          <span>Khám phá Lab 1: Thử nghiệm System Prompt và kiểm tra Context 3 lượt ở cột bên phải!</span>
+        </div>
+      </footer>
+    </main>
+
+    <!-- ============================================================ -->
+    <!-- LAYOUT 3 (PHẢI): CONTEXT (3 LƯỢT LỊCH SỬ + PERSONA)          -->
+    <!-- ============================================================ -->
+    <aside class="panel panel-right" id="panel-context">
+      <div class="context-header">
+        <div class="context-title">
+          <h3>🔬 Context Inspector</h3>
+          <span class="context-subtitle">Dữ liệu thực nạp vào OpenAI API</span>
+        </div>
+      </div>
+
+      <div class="context-content">
+        <!-- PHẦN 1: PERSONA (SYSTEM PROMPT) -->
+        <section class="context-section">
+          <div class="section-title-bar">
+            <h4>🎭 Persona (System Prompt)</h4>
+            <span class="token-pill" id="persona-token-pill">0 tokens</span>
+          </div>
+
+          <div class="persona-presets">
+            <label>Mẫu gợi ý:</label>
+            <div class="preset-chips">
+              <button class="chip" data-persona="Bạn là trợ lý AI thông minh, hỗ trợ giải đáp thắc mắc ngắn gọn, súc tích và chính xác.">Mặc định</button>
+              <button class="chip" data-persona="Bạn là giáo viên tiểu học kiên nhẫn. Hãy giải thích mọi khái niệm thật đơn giản, dễ hiểu và dùng hình ảnh ẩn dụ thân thuộc.">Giáo viên</button>
+              <button class="chip" data-persona="Bạn là Senior Python Software Architect. Luôn cung cấp mã nguồn clean, tối ưu, có docstring và giải thích logic chặt chẽ.">Senior Dev</button>
+              <button class="chip" data-persona="Bạn là một nhà thơ vui tính. Bất kể người dùng hỏi gì, hãy trả lời hoàn toàn bằng thơ lục bát vần điệu và hóm hỉnh.">Thơ lục bát</button>
+            </div>
+          </div>
+
+          <textarea id="persona-input" class="persona-textarea" rows="4" placeholder="Nhập chỉ thị vai trò (System Prompt)..."></textarea>
+          
+          <div class="persona-actions">
+            <button id="btn-save-persona" class="btn btn-secondary btn-sm">💾 Áp dụng Persona</button>
+            <span id="persona-save-status" class="save-status"></span>
+          </div>
+        </section>
+
+        <!-- PHẦN 2: ĐIỀU CHỈNH THÔNG SỐ MODEL (HYPERPARAMETERS) -->
+        <section class="context-section">
+          <div class="section-title-bar">
+            <h4>⚙️ Thông Số Model (Parameters)</h4>
+            <button id="btn-reset-params" class="btn-text-action" title="Khôi phục thông số mặc định">↺ Đặt lại</button>
+          </div>
+
+          <!-- Temperature Slider -->
+          <div class="param-item">
+            <div class="param-header">
+              <label for="param-temp">Temperature (Độ ngẫu nhiên):</label>
+              <span class="param-badge" id="val-temp">0.70</span>
+            </div>
+            <input type="range" id="param-temp" min="0.0" max="2.0" step="0.05" value="0.70" class="param-slider">
+            <div class="param-hint">
+              <span>0.0 (Chính xác / Code)</span>
+              <span>2.0 (Sáng tạo / Thơ)</span>
+            </div>
+          </div>
+
+          <!-- Top P Slider -->
+          <div class="param-item">
+            <div class="param-header">
+              <label for="param-top-p">Top P (Nucleus Sampling):</label>
+              <span class="param-badge" id="val-top-p">0.90</span>
+            </div>
+            <input type="range" id="param-top-p" min="0.05" max="1.0" step="0.05" value="0.90" class="param-slider">
+            <div class="param-hint">
+              <span>0.1 (Tập trung)</span>
+              <span>1.0 (Đầy đủ)</span>
+            </div>
+          </div>
+
+          <!-- Max Tokens Slider -->
+          <div class="param-item">
+            <div class="param-header">
+              <label for="param-max-tokens">Max Tokens (Giới hạn output):</label>
+              <span class="param-badge" id="val-max-tokens">512</span>
+            </div>
+            <input type="range" id="param-max-tokens" min="64" max="2048" step="64" value="512" class="param-slider">
+            <div class="param-hint">
+              <span>64 tokens</span>
+              <span>2048 tokens</span>
+            </div>
+          </div>
+
+          <!-- Parameter Presets -->
+          <div class="param-presets">
+            <label>Cấu hình gợi ý:</label>
+            <div class="preset-chips">
+              <button class="chip chip-param" data-temp="0.2" data-topp="0.8" data-max="1024">💻 Viết Code (T: 0.2)</button>
+              <button class="chip chip-param" data-temp="0.7" data-topp="0.9" data-max="512">⚖️ Cân Bằng (T: 0.7)</button>
+              <button class="chip chip-param" data-temp="1.3" data-topp="0.95" data-max="512">🎨 Thơ Văn (T: 1.3)</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- PHẦN 3: 3 ĐOẠN LỊCH SỬ CŨ (SLIDING WINDOW CONTEXT) -->
+        <section class="context-section">
+          <div class="section-title-bar">
+            <h4>📚 Lịch sử hội thoại (3 lượt gần nhất)</h4>
+            <span class="token-pill" id="context-token-pill">0 tokens</span>
+          </div>
+          <p class="context-desc">
+            Theo bài tập Lab 1: Hệ thống chỉ lưu tối đa <b>3 lượt hỏi - đáp</b> (tối đa 6 messages: <code>history[-6:]</code>) làm ngữ cảnh nạp vào API.
+          </p>
+
+          <div class="context-turns-list" id="context-turns-list">
+            <!-- 3 turns cards render bằng JS -->
+          </div>
+
+          <!-- Khu vực hiển thị thông tin các tin nhắn đã bị cắt khỏi Context -->
+          <div class="dropped-info" id="dropped-info">
+            <span class="dropped-icon">✂️</span>
+            <span id="dropped-text">Không có tin nhắn nào bị cắt.</span>
+          </div>
+        </section>
+
+        <!-- PHẦN 3: TỔNG QUAN PAYLOAD TOKEN -->
+        <section class="context-section token-breakdown-section">
+          <div class="section-title-bar">
+            <h4>📊 Phân bổ Token Input</h4>
+          </div>
+          <div class="token-bars">
+            <div class="token-row">
+              <span>Persona:</span>
+              <b id="bar-persona-tok">0 tok</b>
+            </div>
+            <div class="token-row">
+              <span>3 Lượt Lịch sử:</span>
+              <b id="bar-history-tok">0 tok</b>
+            </div>
+            <div class="token-row">
+              <span>Câu hỏi mới:</span>
+              <b id="bar-user-tok">0 tok</b>
+            </div>
+            <div class="token-divider"></div>
+            <div class="token-row highlight">
+              <span>Tổng Input Token:</span>
+              <b id="bar-total-tok">0 tok</b>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </aside>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

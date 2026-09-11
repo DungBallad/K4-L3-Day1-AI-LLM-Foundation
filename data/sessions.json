@@ -1,0 +1,174 @@
+[
+  {
+    "id": "session_1789102373425",
+    "title": "Cuộc trò chuyện mới",
+    "persona": "Bạn là giáo viên tiểu học kiên nhẫn. Hãy giải thích mọi khái niệm thật đơn giản, dễ hiểu và dùng hình ảnh ẩn dụ thân thuộc.",
+    "model": "gpt-4o",
+    "temperature": 0.2,
+    "top_p": 0.95,
+    "max_tokens": 512,
+    "messages": [],
+    "createdAt": "2026-09-11 11:52:53",
+    "updatedAt": "2026-09-11 11:52:53"
+  },
+  {
+    "id": "session_1789098945",
+    "title": "Viết thơ về Đăng Răng To",
+    "persona": "Bạn là giáo viên tiểu học kiên nhẫn. Hãy giải thích mọi khái niệm thật đơn giản, dễ hiểu và dùng hình ảnh ẩn dụ thân thuộc.",
+    "model": "gpt-4o",
+    "temperature": 0.2,
+    "top_p": 0.95,
+    "max_tokens": 512,
+    "messages": [
+      {
+        "role": "user",
+        "content": "Viết thơ về Đăng Răng To",
+        "timestamp": 1789102120.656124
+      },
+      {
+        "role": "assistant",
+        "content": "Đăng là chàng trai rất duyên,  \nRăng to như kiểu phát riêng trời cho.  \nCười lên sáng cả bầu trời,  \nGặp Đăng ai cũng cứ mời uống bia.  \n\nDù răng đôi lúc bất tiện,  \nKẹp ổ bánh mì không tiện chút đâu.  \nNhưng chàng rạng rỡ biết bao,  \nRăng to vẫn cứ làm sao thiệt tình!  \n\nCác cô mê mẩn chạy quanh,  \nKhen rằng răng đó duyên lành trời cho.  \nCười vui là thấy mê ly,  \nĐăng ơi răng to nhưng chi lạ lùng!  ",
+        "timestamp": 1789102120.656124,
+        "meta": {
+          "model": "gpt-4o",
+          "temperature": 1.3,
+          "top_p": 0.95,
+          "max_tokens": 512,
+          "latency": 3.56,
+          "input_tokens": 47,
+          "output_tokens": 137,
+          "total_tokens": 184,
+          "total_cost": 0.001488
+        }
+      },
+      {
+        "role": "user",
+        "content": "Một điều về Hà Nội",
+        "timestamp": 1789102142.1269178
+      },
+      {
+        "role": "assistant",
+        "content": "Hà Nội giống như một chiếc bánh trung thu cổ điển. Bên ngoài có thể là lớp vỏ cũ kỹ với những con phố nhỏ, những tòa nhà cổ và những hồ nước xanh biếc. Bên trong là hương vị đặc biệt của cuộc sống nhộn nhịp, với xe cộ đi lại tấp nập và người dân thân thiện. Vào mùa thu, khi gió nhẹ nhàng thổi qua từng góc phố, Hà Nội như được phủ lên một lớp đường ngọt ngào, làm say lòng bao người lữ khách.",
+        "timestamp": 1789102142.1269178,
+        "meta": {
+          "model": "gpt-4o",
+          "temperature": 1.3,
+          "top_p": 0.95,
+          "max_tokens": 512,
+          "latency": 2.35,
+          "input_tokens": 188,
+          "output_tokens": 121,
+          "total_tokens": 309,
+          "total_cost": 0.00168
+        }
+      },
+      {
+        "role": "user",
+        "content": "Một điều về Hà Nội",
+        "timestamp": 1789102152.0341332
+      },
+      {
+        "role": "assistant",
+        "content": "Hà Nội giống như một cuốn sách cổ. Mỗi trang là một câu chuyện riêng, từ những con phố cổ với mái ngói rêu phong đến các quán cà phê nhỏ ven đường. Dạo quanh hồ Hoàn Kiếm, bạn như lật giở từng trang, cảm nhận hương hoa sữa thoảng nhẹ và nghe tiếng chuông nhà thờ ngân nga. Hà Nội cất giữ những ký ức của thời gian, đưa người ta vào một cuộc hành trình vừa cũ kỹ, vừa ấm áp, khó quên.",
+        "timestamp": 1789102152.0341332,
+        "meta": {
+          "model": "gpt-4o",
+          "temperature": 1.3,
+          "top_p": 0.95,
+          "max_tokens": 512,
+          "latency": 1.9,
+          "input_tokens": 313,
+          "output_tokens": 117,
+          "total_tokens": 430,
+          "total_cost": 0.001953
+        }
+      },
+      {
+        "role": "user",
+        "content": "Một điều về Hà Nội",
+        "timestamp": 1789102159.6240728
+      },
+      {
+        "role": "assistant",
+        "content": "Hà Nội giống như một ly cà phê phin truyền thống. Ban đầu, có thể nó trông bình dị và chậm rãi nhỏ giọt, nhưng hương vị thì đậm đà và lôi cuốn. Đó là nơi mà buổi sáng bạn có thể nghe tiếng chim hót líu lo trong công viên, buổi chiều lại ngắm hoàng hôn phản chiếu trên mặt hồ. Hà Nội có cách riêng để lắng đọng trong lòng người, nhẹ nhàng nhưng sâu sắc, khiến ai một lần ghé qua cũng nhớ mãi không quên.",
+        "timestamp": 1789102159.6240728,
+        "meta": {
+          "model": "gpt-4o",
+          "temperature": 1.3,
+          "top_p": 0.95,
+          "max_tokens": 512,
+          "latency": 2.58,
+          "input_tokens": 434,
+          "output_tokens": 125,
+          "total_tokens": 559,
+          "total_cost": 0.002335
+        }
+      },
+      {
+        "role": "user",
+        "content": "Một điều về Hà Nội",
+        "timestamp": 1789102179.9791303
+      },
+      {
+        "role": "assistant",
+        "content": "Hà Nội như một bức tranh sơn dầu đầy màu sắc. Mỗi góc phố, mỗi con đường đều là một nét vẽ riêng biệt, từ màu xanh của những hàng cây ven đường đến sắc đỏ của những chiếc đèn lồng treo cao. Khi bạn đi dạo quanh Hồ Tây vào buổi chiều, ánh nắng vàng óng ánh trên mặt nước tạo nên một khung cảnh yên bình và thơ mộng. Hà Nội không chỉ là một thành phố, mà còn là một tác phẩm nghệ thuật sống động, nơi mà mỗi người đều có thể tìm thấy một mảng màu phù hợp với tâm hồn mình.",
+        "timestamp": 1789102179.9791303,
+        "meta": {
+          "model": "gpt-4o",
+          "temperature": 0.2,
+          "top_p": 0.95,
+          "max_tokens": 512,
+          "latency": 2.89,
+          "input_tokens": 417,
+          "output_tokens": 134,
+          "total_tokens": 551,
+          "total_cost": 0.002383
+        }
+      },
+      {
+        "role": "user",
+        "content": "Một điều về Hà Nội",
+        "timestamp": 1789102187.1848662
+      },
+      {
+        "role": "assistant",
+        "content": "Hà Nội giống như một bát phở nóng hổi vào buổi sáng sớm. Khi bạn thưởng thức, từng hương vị hòa quyện vào nhau, từ nước dùng ngọt thanh, bánh phở mềm mại đến những lát thịt bò thơm ngon. Cũng như vậy, Hà Nội là sự kết hợp hài hòa giữa truyền thống và hiện đại, giữa nhịp sống hối hả và những khoảnh khắc bình yên. Dù bạn là ai, khi đến Hà Nội, bạn sẽ cảm nhận được sự ấm áp và gần gũi, như cách mà một bát phở làm ấm lòng người trong những ngày se lạnh.",
+        "timestamp": 1789102187.1848662,
+        "meta": {
+          "model": "gpt-4o",
+          "temperature": 0.2,
+          "top_p": 0.95,
+          "max_tokens": 512,
+          "latency": 4.75,
+          "input_tokens": 430,
+          "output_tokens": 142,
+          "total_tokens": 572,
+          "total_cost": 0.002495
+        }
+      },
+      {
+        "role": "user",
+        "content": "Một điều về Hà Nội",
+        "timestamp": 1789102191.703968
+      },
+      {
+        "role": "assistant",
+        "content": "Hà Nội giống như một cuốn sách cổ, mỗi trang đều chứa đựng những câu chuyện thú vị và đầy ý nghĩa. Khi bạn đi dạo qua những con phố cổ, bạn như đang lật giở từng trang sách, khám phá những di sản văn hóa và lịch sử lâu đời. Từ những ngôi nhà cổ kính với mái ngói rêu phong đến những quán cà phê nhỏ xinh nằm nép mình trong ngõ hẻm, tất cả đều kể về một Hà Nội vừa quen thuộc vừa bí ẩn. Mỗi lần ghé thăm, bạn lại tìm thấy một câu chuyện mới, một góc nhìn mới, khiến cuốn sách Hà Nội không bao giờ trở nên nhàm chán.",
+        "timestamp": 1789102191.703968,
+        "meta": {
+          "model": "gpt-4o",
+          "temperature": 0.2,
+          "top_p": 0.95,
+          "max_tokens": 512,
+          "latency": 2.23,
+          "input_tokens": 455,
+          "output_tokens": 154,
+          "total_tokens": 609,
+          "total_cost": 0.002678
+        }
+      }
+    ],
+    "createdAt": "2026-09-11 11:48:18",
+    "updatedAt": "2026-09-11 11:49:51"
+  }
+]
